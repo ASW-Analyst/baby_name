@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rate Baby Names</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Rate This Name: {{ name.name }}</h1>
+
+    <form method="POST">
+        <label>Rate (0-5):</label>
+        <input type="number" name="rating" min="0" max="5" step="0.5" required>
+        <button type="submit">Submit Rating</button>
+    </form>
+
+    <a href="{{ url_for('auth.logout') }}">Logout</a>
+</body>
+</html>
