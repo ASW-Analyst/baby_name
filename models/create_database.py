@@ -1,6 +1,6 @@
 from sqlalchemy import inspect
 from models.database import engine
-from models.models import Base, BabyName  # Import your models
+from models.models import Base, BabyName, User  # Import your models
 
 # Create an inspector to check if the table exists
 inspector = inspect(engine)
