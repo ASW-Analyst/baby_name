@@ -172,3 +172,6 @@ cython_debug/
 
 # Ignore SQLite database files
 data/*.db
+
+# Manual add users py script
+models/manual_add_users.py
