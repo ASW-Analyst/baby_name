@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, UniqueConstraint
+from sqlalchemy import Column, Integer, String, UniqueConstraint, Float, ForeignKey
 from models.database import Base, engine
+from flask_login import UserMixin
 
 import bcrypt
 
@@ -17,7 +18,7 @@ class BabyName(Base):
         "name", "gender", name="unique_name_gender"),)
 
 
-class User(Base):
+class User(Base, UserMixin):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String, unique=True, index=True)
@@ -29,6 +30,15 @@ class User(Base):
 
     def verify_password(self, password):
         return bcrypt.checkpw(password.encode(), self.password_hash.encode())
+
+
+class Rating(Base):
+    __tablename__ = "ratings"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name_id = Column(Integer, ForeignKey("names.id"))
+    user_id = Column(Integer, ForeignKey("users.id"))
+    rating = Column(Float)
 
 
 # Create the tables
