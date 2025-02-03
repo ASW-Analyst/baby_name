@@ -46,6 +46,53 @@ baby_name/
 ```sh
 
 git clone https://github.com/ASW-Analyst/baby_name.git
-cd baby-name
+cd baby_name
 
 ```
+### 2. Set-up Virtual Environment
+
+```sh
+python -m venv venv
+source venv/bin/activate
+```
+### 3. Install Dependencies
+
+```sh
+pip install -r requirements.txt
+```
+
+### 4. Set-up Environment Variables
+Create a `.env` file in the root directory:
+```
+SECRET_KEY=set_secret_key
+```
+
+### 5. Create the Database and Load Names
+```sh
+python -m models.create_database
+python -m models.populate_names_db
+```
+
+### 6. Create Users
+Run the `create_user.py` script to load function for creating a user:
+```sh
+python -m models.create_user
+```
+Now you can manually add a test user in an untracked script that sets a username and password:
+```sh
+python -m manual_add_users
+```
+### 7. Run the App
+```sh
+python run.py
+```
+This will run the app locally making it available at:
+* **http://127.0.0.1:5000/**
+
+## Development
+
+- [ ] Solution for running the app online and ensuring DB updated
+- [ ] Add styling (i.e. images, CSS etc) to the app pages
+- [ ] Experiment with different rating options (drop-down, radio etc.)
+- [ ] Reduce names in DB, apply filtering
+- [ ] Add name information to DB (i.e. popularity)
