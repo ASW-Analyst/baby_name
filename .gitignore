@@ -169,3 +169,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Ignore SQLite database files
+data/*.db
+
+# Manual add users py script
+models/manual_add_users.py
