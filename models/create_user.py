@@ -1,5 +1,6 @@
 from models.database import SessionLocal
 from models.models import User
+import os
 
 
 def create_user(username, password):
@@ -18,3 +19,13 @@ def create_user(username, password):
     db.commit()
     db.close()
     print(f"✅ User '{username}' created successfully!")
+
+
+admin1_user = os.getenv("ADMIN_USER1")
+admin1_pass = os.getenv("ADMIN_PASS1")
+
+admin2_user = os.getenv("ADMIN_USER2")
+admin2_pass = os.getenv("ADMIN_PASS2")
+
+create_user(admin1_user, admin1_pass)
+create_user(admin2_user, admin2_pass)
