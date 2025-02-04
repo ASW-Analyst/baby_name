@@ -10,8 +10,8 @@ import bcrypt
 class BabyName(Base):
     __tablename__ = "names"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String, index=True)
-    gender = Column(String)
+    name = Column(String, index=True, nullable=False)
+    gender = Column(String, nullable=False)
 
     # Enforce uniqueness for (name, gender) pairs
     __table_args__ = (UniqueConstraint(
