@@ -17,13 +17,14 @@ df_girls["Gender"] = "Girl"
 
 df_names = pd.concat([df_boys, df_girls])
 df_names_val = df_names.values
+data_list = [tuple(row) for row in df_names[["Name", "Gender"]].values]
 # Open a database session
 db = SessionLocal()
 
 # Insert data
 with engine.connect() as connection:
     sql = "INSERT INTO names (name, gender) VALUES (%s, %s)"
-    connection.execute(sql, df_names_val.tolist())
+    connection.execute(sql, data_list)
 
 db.commit()
 db.close()
