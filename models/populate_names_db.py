@@ -19,7 +19,7 @@ df_girls["Gender"] = "Girl"
 df_names = pd.concat([df_boys, df_girls])
 df_names_val = df_names.values
 
-data_list = [tuple(row) for row in df_names[["name", "gender"]].values]
+data_list = [tuple(row) for row in df_names[["Name", "Gender"]].values]
 
 # ✅ Fix: Wrap SQL statement in `text()`
 sql = text("INSERT INTO names (name, gender) VALUES (:1, :2,)")
