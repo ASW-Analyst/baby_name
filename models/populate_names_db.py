@@ -1,4 +1,5 @@
 import pandas as pd
+from sqlalchemy import text
 from models.database import SessionLocal, engine
 from models.models import BabyName
 
@@ -17,16 +18,14 @@ df_girls["Gender"] = "Girl"
 
 df_names = pd.concat([df_boys, df_girls])
 df_names_val = df_names.values
-data_list = [tuple(row) for row in df_names[["Name", "Gender"]].values]
-# Open a database session
-db = SessionLocal()
 
-# Insert data
+data_list = [tuple(row) for row in df_names[["name", "gender"]].values]
+
+# ✅ Fix: Wrap SQL statement in `text()`
+sql = text("INSERT INTO names (name, gender) VALUES (:1, :2,)")
+
+# Use `executemany()` for bulk insert
 with engine.connect() as connection:
-    sql = "INSERT INTO names (name, gender) VALUES (%s, %s)"
     connection.execute(sql, data_list)
 
-db.commit()
-db.close()
-
-print("Database populated with baby names!")
+print("Database successfully populated!")
